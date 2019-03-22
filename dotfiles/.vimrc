@@ -1,0 +1,85 @@
+
+" ======================================
+"   Plugin management with Plug
+" ======================================
+" Install Plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if has("autocmd")
+        autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
+    endif
+endif
+
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
+
+    Plug 'vim-airline/vim-airline'		    " Airline status bar
+    Plug 'vim-airline/vim-airline-themes'	" Themes for Airline
+    Plug 'tpope/vim-fugitive'               " A Git wrapper for Vim
+    Plug 'morhetz/gruvbox'                  " A color scheme
+    Plug 'bronson/vim-trailing-whitespace'  " Highlight trailing white spaces
+
+" Initialize plugin system
+call plug#end()
+
+
+" ======================================
+"   Basic configuration
+" ======================================
+" Binding settings
+nmap <S-CR> O<Esc>
+nmap <CR> o<Esc>
+
+" Display settings
+set number  " Print the line number in front of each line
+set nowrap  " [ON]  Lines longer than the width of the window will wrap and displaying continues on the next line
+            " [OFF] Lines will not wrap and only part of long lines will be displayed
+
+" Editor settings
+set expandtab	    " In Insert mode: Use the appropriate number of spaces to insert a <Tab>
+set tabstop=4       " Number of spaces that a <Tab> in the file counts for
+set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+set laststatus=2    " The value of this option influences when the last window will have a status line
+                    " [0: never | 1: only if there are at least two windows | 2: always]
+
+filetype plugin indent on   " Enable file type detection
+                            " Also load indent files, to automatically do language-dependent indenting
+
+set fileformats=unix,dos    " Gives the end-of-line <EOL> formats that will be tried when starting to edit a new
+                            " buffer and when reading a file into an existing buffer
+
+" Command-line settings
+set wildmode=longest,list,full  " The first <Tab> hit completes till longest common string
+                                " The second <Tab> hit lists all matches (when more than one)
+                                " The third and subsequent <Tab>s complete the next full match
+set wildmenu                    " [ON] Command-line completion operates in an enhanced mode
+
+" Search settings
+set hlsearch    " When there is a previous search pattern, highlight all its matches
+set incsearch   " While typing a search command, show where the pattern, as it was typed so far, matches
+
+" Column 80
+set colorcolumn=80
+
+" ======================================
+"   Syntax and color themes
+" ======================================
+syntax enable           " Enable syntax highlighting
+set background=dark     " [dark]  Vim will try to use colors that look good on a dark background
+                        " [light] Vim will try to use colors that look good on a light background
+
+colorscheme gruvbox
+
+" ======================================
+"   Plugin configuration
+" ======================================
+" vim-airline
+let g:airline#extensions#whitespace#enabled = 1     " Enable detection of whitespace errors
+let g:airline#extensions#tabline#enabled = 1        " Enable bufferline integration (list of buffers at the top)
+let g:airline#extensions#tabline#fnamemod = ':t'    " Formatting of filenames (only show the filename)
+let g:airline#extensions#tabline#buffer_nr_show = 1 " Configure whether buffer numbers should be shown
+
+" Fancy Powerline fonts
+let g:airline_powerline_fonts = 1   " Enable automatic population of the 'g:airline_symbols' dictionary
+                                    " with powerline symbols (needs https://github.com/powerline/fonts)
