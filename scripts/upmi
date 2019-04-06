@@ -21,7 +21,7 @@ else
 fi
 
 # Determine approprite package manager
-guess_distribution()
+guess_distro()
 {
     # https://unix.stackexchange.com/a/6348
     if [ -f /etc/os-release ]; then
