@@ -1,0 +1,4 @@
+# This file is automatically deployed to the user's home directory
+source }}DOTFILES{{/config/screenrc
+
+# Add machine specific configs to this file

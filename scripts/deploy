@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script is meant to deploy all config files onto a new machine
 
@@ -7,6 +7,8 @@ trap "exit 0" SIGINT
 # Choosing install directory
 DEF_DOT_DIR="$HOME/.config/dotfiles"
 DOT_DIR=${1:-$DEF_DOT_DIR}
+LINK_DIR=$DOT_DIR/linked
+SOURCERS_DIR=$DOT_DIR/sourcers
 
 # Check if $DOT_DIR is a directory
 if [ -f $DOT_DIR ];then
@@ -54,6 +56,11 @@ else
 fi
 
 # Backup old config files
+BACK_DIR="$DOT_DIR/backup/$(date +"%s")"
+echo "Backing up your config files at $BACK_DIR"
+mkdir -p $BACK_DIR
+find $SOURCERS_DIR -type f
+find $LINK_DIR -type f
 
 
 # generate new dotfiles sourcing the ones in the repo
