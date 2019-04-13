@@ -56,11 +56,16 @@ else
 fi
 
 # Backup old config files
-BACK_DIR="$DOT_DIR/backup/$(date +"%s")"
+export BACK_DIR="$DOT_DIR/backup/$(date +"%s")"
 echo "Backing up your config files at $BACK_DIR"
 mkdir -p $BACK_DIR
-find $SOURCERS_DIR -type f
-find $LINK_DIR -type f
+find $SOURCERS_DIR -type f ! -name README.md -printf '%P\n' |
+    xargs -I [other] sh -c 'mkdir -p `dirname $BACK_DIR/[other]` &&
+        cp -v "$HOME/[other]" "$BACK_DIR/[other]" 2>/dev/null'
+
+find $LINK_DIR -type f ! -name README.md -printf '%P\n' |
+    xargs -I [other] sh -c 'mkdir -p `dirname $BACK_DIR/[other]` &&
+        cp -v "$HOME/[other]" "$BACK_DIR/[other]" 2>/dev/null'
 
 
 # generate new dotfiles sourcing the ones in the repo
