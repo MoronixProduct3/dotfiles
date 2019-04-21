@@ -32,9 +32,9 @@ nmap <S-CR> O<Esc>
 nmap <CR> o<Esc>
 
 " Display settings
-set number  " Print the line number in front of each line
-set nowrap  " [ON]  Lines longer than the width of the window will wrap and displaying continues on the next line
-            " [OFF] Lines will not wrap and only part of long lines will be displayed
+set relativenumber  " Print the relative line number in front of each line
+set nowrap          " [ON]  Lines longer than the width of the window will wrap and displaying continues on the next line
+                    " [OFF] Lines will not wrap and only part of long lines will be displayed
 
 " Editor settings
 set expandtab	    " In Insert mode: Use the appropriate number of spaces to insert a <Tab>
