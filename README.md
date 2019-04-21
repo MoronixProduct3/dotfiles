@@ -6,6 +6,11 @@ This is where I store my config files.
 The target environment must have access to a bash shell. The installation
 scripts are not POSIX compliant.
 
+Quick deployment script:
+```
+$ . <(curl -L https://raw.githubusercontent.com/MoronixProduct3/dotfiles/master/scripts/deploy)
+```
+
 ### Structure
 This system defines two types of config files:
 #### Sourcing config files
