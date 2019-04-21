@@ -5,18 +5,40 @@
 # Extracting script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-echo $SCRIPT_DIR
+DOT_DIR=$(dirname $SCRIPT_DIR)
+LINK_DIR=$DOT_DIR/linked
+SOURCERS_DIR=$DOT_DIR/sourcers
 
-## Backup old config files
-#export BACK_DIR="$DOT_DIR/backup/$(date +"%s")"
-#echo "Backing up your config files at $BACK_DIR"
-#mkdir -p $BACK_DIR
-#find $SOURCERS_DIR -type f ! -name README.md -printf '%P\n' |
-#    xargs -I [file] sh -c 'mkdir -p `dirname $BACK_DIR/[file]` &&
-#        cp -v "$HOME/[file]" "$BACK_DIR/[file]" 2>/dev/null'
-#
-#find $LINK_DIR -type f ! -name README.md -printf '%P\n' |
-#    xargs -I [file] sh -c 'mkdir -p `dirname $BACK_DIR/[file]` &&
-#        cp -v "$HOME/[file]" "$BACK_DIR/[file]" 2>/dev/null'
+# Sourcing path key
+SOURCER_PATH_KEY='#DOTFILES#'
 
-echo "Running setup"
+
+# Backup old config files
+export BACK_DIR="$DOT_DIR/backup/$(date +"%s")"
+echo "Backing up your config files at $BACK_DIR"
+mkdir -p $BACK_DIR
+find $SOURCERS_DIR -type f ! -name README.md -printf '%P\n' |
+    xargs -I [file] sh -c 'mkdir -p `dirname $BACK_DIR/[file]` &&
+        cp -v "$HOME/[file]" "$BACK_DIR/[file]" 2>/dev/null'
+find $LINK_DIR -type f ! -name README.md -printf '%P\n' |
+    xargs -I [file] sh -c 'mkdir -p `dirname $BACK_DIR/[file]` &&
+        cp -v "$HOME/[file]" "$BACK_DIR/[file]" 2>/dev/null'
+
+
+# Create symlinks to linked files
+printf "\nCreating symlinks to linked configs\n"
+find $LINK_DIR -type f ! -name README.md -exec bash -c "
+    TARGET={}
+    LINK_PATH=\${TARGET/\"$LINK_DIR\"/\"$HOME\"}
+    mkdir -vp \$(dirname \$LINK_PATH)
+    ln -fvs \$TARGET \$LINK_PATH
+    " \;
+
+# Creating sourcing files
+printf "\nCreating sourcing configs\n"
+find $SOURCERS_DIR -type f ! -name README.md -exec bash -c "
+    SOURCE={}
+    DEST_PATH=\${SOURCE/\"$SOURCERS_DIR\"/\"$HOME\"}
+    mkdir -vp \$(dirname \$DEST_PATH)
+    sed 's|$SOURCER_PATH_KEY|$DOT_DIR|g' \$SOURCE > \$DEST_PATH
+    " \;
