@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Maps dotfiles repository to environment variables. Simply pass the path of the
+# repo as the $1 parameter to create the remaining env variables
+if [ $# -ne 1 ]
+then
+    echo 'Missing operand'
+    exit 1
+fi
+
+export DOTFILES=$1
+export DOT_CONF=$DOTFILES/configs
+export DOT_LINK=$DOTFILES/linked
+export DOT_SOURCERS=$DOTFILES/sourcers
