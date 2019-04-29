@@ -8,7 +8,7 @@ scripts are not POSIX compliant.
 
 Quick deployment script:
 ```
-$ . <(curl -L https://moronixproduct3.github.io/dotfiles/scripts/deploy)
+$ . <(curl -L https://raw.githubusercontent.com/MoronixProduct3/dotfiles/master/scripts/deploy)
 ```
 
 ### Structure
