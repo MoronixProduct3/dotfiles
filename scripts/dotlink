@@ -1,0 +1,69 @@
+#!/bin/sh
+
+# Put a new config file amongst the linked directory
+
+
+# utility function
+beginswith() { case $1 in "$2"*) true;; *) false;; esac; }
+matchyes() { case $1 in "y") true;; "Y") true;; *) false;; esac; }
+
+# Checking for arguments; There sould only be one argument: the path of the file
+if [ "$#" -ne 1 ]; then
+    echo "Invalid number of arguments, expected one file path"
+    exit 1
+fi
+
+# Checking if the file provided exists and is in the home directory of the user
+FULL_PATH="$( cd "$( dirname "$1" )" && pwd )/$(basename "$1")"
+if ! beginswith $FULL_PATH $HOME; then
+    echo "This file is not in your home directory"
+    exit 1
+fi
+if [ ! -e "$FULL_PATH" ]; then
+    echo "The input does not exist"
+    exit 1
+fi
+
+# Checking if the file is already in the dotfiles directory
+if beginswith $FULL_PATH $DOTFILES; then
+    echo "This file is already in the dotfiles directory"
+    exit 1
+fi
+
+# Check if file is a link
+if [ -L $1 ];then
+    echo "The file specified is symbolic link"
+    exit 1
+fi
+
+# Check if there is already an entry present for this file.
+SRC_PATH=$(sed "s|$HOME|$DOT_SOURCERS|g" <<< "$FULL_PATH")
+if [ -e "$SRC_PATH" ]; then
+    echo "Sourced version of the file already exists:"
+    echo $SRC_PATH
+    exit 1
+fi
+
+STORE_PATH=$(sed "s|$HOME|$DOT_LINK|g" <<< "$FULL_PATH")
+if [ -e "$STORE_PATH" ]; then
+    echo "'$STORE_PATH' : already exists"
+    read -p  "Do you want to ovewrite it? (y or [n]) " -n 1 -r
+    echo
+
+    if ! matchyes $REPLY;then
+        echo "Terminating"
+        exit 0
+    fi
+fi
+
+
+# Move the file to the git repo
+mkdir -vp $(dirname "$STORE_PATH")
+mv -v "$1" "$STORE_PATH" &&
+
+# Create symlink
+ln -s "$STORE_PATH" "$1" &&
+
+# Add to git repo
+git --git-dir=$DOTFILES/.git --work-tree=$DOTFILES add -v "$STORE_PATH" &&
+git --git-dir=$DOTFILES/.git --work-tree=$DOTFILES status

@@ -1,7 +1,8 @@
 # These configurations are sourced at login
 
 # Allows git management of config files
-alias cgit="git --git-dir=$DOTFILES/.git --work-tree=$DOTFILES"
+alias dotgit="git --git-dir=$DOTFILES/.git --work-tree=$DOTFILES"
+alias dotcd="cd $DOTFILES"
 
 # Colors for terminal utilites
 if [ -x /usr/bin/dircolors ]; then

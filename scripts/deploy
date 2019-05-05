@@ -15,7 +15,7 @@ DOT_DIR=${1:-$DEF_DOT_DIR}
 LINK_DIR=$DOT_DIR/linked
 SOURCERS_DIR=$DOT_DIR/sourcers
 
-# Git repository
+# GitHub repository
 GIT_REPO='MoronixProduct3/dotfiles'
 
 # Check if $DOT_DIR is a directory
