@@ -19,6 +19,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'               " A Git wrapper for Vim
     Plug 'morhetz/gruvbox'                  " A color scheme
     Plug 'bronson/vim-trailing-whitespace'  " Highlight trailing white spaces
+    Plug 'sirtaj/vim-openscad'              " Openscad Syntax highlight
 
 " Initialize plugin system
 call plug#end()
