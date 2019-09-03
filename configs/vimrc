@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'                  " A color scheme
     Plug 'bronson/vim-trailing-whitespace'  " Highlight trailing white spaces
     Plug 'sirtaj/vim-openscad'              " Openscad Syntax highlight
+    Plug 'adimit/prolog.vim'                " Prolog Syntax
 
 " Initialize plugin system
 call plug#end()
