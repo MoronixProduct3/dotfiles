@@ -41,7 +41,7 @@ set nowrap          " [ON]  Lines longer than the width of the window will wrap 
 " Editor settings
 set expandtab	    " In Insert mode: Use the appropriate number of spaces to insert a <Tab>
 set tabstop=4       " Number of spaces that a <Tab> in the file counts for
-set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+set shiftwidth=0    " Number of spaces to use for each step of (auto)indent, 0=tabstop
 set laststatus=2    " The value of this option influences when the last window will have a status line
                     " [0: never | 1: only if there are at least two windows | 2: always]
 
