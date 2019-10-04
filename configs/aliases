@@ -19,3 +19,9 @@ fi
 # ls aliases
 alias ll='ls -Alh'
 alias la='ls -A'
+
+# xclip shortcuts
+alias xs='xclip'
+alias xc='xclip -selection clipboard'
+alias xso='xclip -o'
+alias xco='xclip -selection clipboard -o'
