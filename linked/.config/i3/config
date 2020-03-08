@@ -179,4 +179,4 @@ client.placeholder      #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background       #2f343f
 
 # Setting keyboard layout key and languages
-exec_always setxkbmap -layout us,ca -option grp:lctrl_lshift_toggle
+exec_always setxkbmap -layout us,ca -option grp:win_space_toggle
