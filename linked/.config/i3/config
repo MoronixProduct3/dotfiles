@@ -22,6 +22,9 @@ bindsym XF86AudioMute exec pamixer -t
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# Lock screen using i3lock
+bindsym $mod+Shift+p exec i3lock -c 333333
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
