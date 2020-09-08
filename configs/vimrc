@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'bronson/vim-trailing-whitespace'  " Highlight trailing white spaces
     Plug 'sirtaj/vim-openscad'              " Openscad Syntax highlight
     Plug 'adimit/prolog.vim'                " Prolog Syntax
+    Plug 'peterhoeg/vim-qml'                " QML syntax
 
 " Initialize plugin system
 call plug#end()
