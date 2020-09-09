@@ -9,6 +9,8 @@ source "$DOT_REPO/configs/env" "$DOT_REPO"
 # terminal aliases
 source "$DOT_CONF/aliases"
 
+
+if [[ $- == *i* ]]; then
 # Bash stub appearance
 export PS1="\[\033[38;5;37m\]\u\[$(tput sgr0)\]\[\033[38;5;7m\]@\[$(tput sgr0)\]\[\033[38;5;214m\]\h\[$(tput sgr0)\]\[\033[38;5;7m\]:\[$(tput sgr0)\]\[\033[38;5;241m\]\w\[$(tput sgr0)\]\[\033[38;5;9m\]\\$\[$(tput sgr0)\]\[\033[38;5;7m\] \[$(tput sgr0)\]"
 
@@ -22,3 +24,4 @@ man() {
     LESS_TERMCAP_us=$'\e[01;32m' \
     command man "$@"
 }
+fi

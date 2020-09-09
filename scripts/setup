@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script sets up all the config files once the directory is deployed
+# This script sets up all the config files once the repositry is deployed
 
 # Extracting script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -49,5 +49,5 @@ find $SOURCERS_DIR -type f ! -name README.md -exec bash -c "
 if [ -n "$BASH" ];then
     echo "Sourcing .bashrc"
     source "$HOME/.bashrc"
- fi
+fi
 

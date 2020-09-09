@@ -19,6 +19,7 @@ fi
 # ls aliases
 alias ll='ls -Alh'
 alias la='ls -A'
+alias l='ls'
 
 # xclip shortcuts
 alias xs='xclip'
