@@ -71,10 +71,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+t floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+t focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -188,3 +188,6 @@ exec_always setxkbmap -layout us,ca -option grp:win_space_toggle
 exec_always --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/*
 # Composition manager for transparency
 exec xcompmgr -c -f -n
+
+# HiDpi monitor config
+exec --no-startup-id xrdb -merge ~/.Xressources
