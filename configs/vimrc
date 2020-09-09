@@ -85,3 +85,9 @@ let g:airline#extensions#tabline#buffer_nr_show = 1 " Configure whether buffer n
 " Fancy Powerline fonts
 let g:airline_powerline_fonts = 0   " Enable automatic population of the 'g:airline_symbols' dictionary
                                     " with powerline symbols (needs https://github.com/powerline/fonts)
+
+
+" Snippets
+" MARKDOWN
+    autocmd Filetype markdown map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+
