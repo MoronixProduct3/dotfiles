@@ -22,6 +22,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'sirtaj/vim-openscad'              " Openscad Syntax highlight
     Plug 'adimit/prolog.vim'                " Prolog Syntax
     Plug 'peterhoeg/vim-qml'                " QML syntax
+    Plug 'posva/vim-vue'                    " Vue syntax
+    Plug 'liuchengxu/graphviz.vim'          " Graphviz plugin
+    Plug 'udalov/kotlin-vim'                " Kotlin Syntax Highlight
 
 " Initialize plugin system
 call plug#end()
