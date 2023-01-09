@@ -77,6 +77,8 @@ set background=dark     " [dark]  Vim will try to use colors that look good on a
 
 colorscheme gruvbox
 
+let &t_ut=''            " kitty backgrounds
+
 " ======================================
 "   Plugin configuration
 " ======================================
